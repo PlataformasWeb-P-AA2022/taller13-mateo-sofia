@@ -55,6 +55,6 @@ def obtener_estudiante(url):
     """
     """
     r = requests.get(url, auth=(user, password))
-    nombre_estudiante = ('%s %s')% (json.loads(r.content)['nombre'],
+    nombre_estudiante = ('%s %s') % (json.loads(r.content)['nombre'],
     json.loads(r.content)['apellido'])
     return nombre_estudiante
