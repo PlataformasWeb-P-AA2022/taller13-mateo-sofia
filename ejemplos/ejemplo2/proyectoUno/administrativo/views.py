@@ -122,7 +122,7 @@ def eliminar_estudiante(request, id):
     estudiante.delete()
     return redirect(index)
 
-
+@login_required(login_url='/entrando/login/')
 def crear_numero_telefonico(request):
     """
     """
@@ -156,6 +156,7 @@ def editar_numero_telefonico(request, id):
 
     return render(request, 'crearNumeroTelefonico.html', diccionario)
 
+@login_required(login_url='/entrando/login/')
 def crear_numero_telefonico_estudiante(request, id):
     """
     """
