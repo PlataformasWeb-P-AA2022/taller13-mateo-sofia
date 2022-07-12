@@ -2,6 +2,10 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 # ejemplo de uso django-rest_framework
 from django.contrib.auth.models import User, Group
@@ -26,6 +30,30 @@ def index(request):
     informacion_template = {'edificio': edificio}
     return render(request, 'index.html', informacion_template)
 
+def ingreso(request):
+
+    if request.method == "POST":
+        form = AuthenticationForm(request=request, data=request.POST)
+        print(form.errors)
+        if form.is_valid():
+            username = form.data.get("username")
+            raw_password = form.data.get("password")
+            user = authenticate(username=username, password=raw_password)
+            if user is not None:
+                login(request, user)
+                return redirect(index)
+    else:
+        form = AuthenticationForm()
+
+    informacion_template = {'form': form}
+    return render(request, 'registration/login.html', informacion_template)
+
+def logout_view(request):
+    logout(request)
+    messages.info(request, "Has salido del sistema")
+    return redirect(index)
+
+
 
 def obtener_edificio(request, id):
 
@@ -35,6 +63,8 @@ def obtener_edificio(request, id):
     return render(request, 'obtenerEdificio.html', informacion_template)
 
 
+@login_required(login_url='/entrando/login/')
+@permission_required('viviendas.add_edificio', login_url="/entrando/login/")
 def crear_edificio(request):
     """
     """
@@ -50,7 +80,7 @@ def crear_edificio(request):
 
     return render(request, 'crearEdificio.html', diccionario)
 
-
+@login_required(login_url='/entrando/login/')
 def editar_edificio(request, id):
     """
     """
