@@ -3,7 +3,6 @@ import requests
 import json
 from config import user, password
 
-
 app = Flask(__name__, template_folder='templates')
 
 @app.route("/")
@@ -56,8 +55,6 @@ def obtener_estudiante(url):
     """
     """
     r = requests.get(url, auth=(user, password))
-    nombre_estudiante = json.loads(r.content)['nombre']
-    apellido_estudiante = json.loads(r.content)['apellido']
-    cadena = "%s %s" % (nombre_estudiante, apellido_estudiante)
-
-    return cadena
+    nombre_estudiante = ('%s %s')% (json.loads(r.content)['nombre'],
+    json.loads(r.content)['apellido'])
+    return nombre_estudiante
