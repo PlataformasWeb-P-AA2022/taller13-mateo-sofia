@@ -1,0 +1,139 @@
+/* manejo de las características de la etiqueta body*/
+
+body {
+  /*background: #FEFEFD;*/
+  background: #fefefd;
+  padding: 30px;
+  font-size: 18px;
+}
+
+header {
+  background: #034275;
+  color: #fff;
+}
+/* manejo de las características de la etiqueta table*/
+
+section {
+  width: 100%;
+}
+#tabla_datos {
+  margin-top: 20px;
+  padding: 10px;
+}
+th,
+td {
+  padding: 15px;
+  border-bottom: 1px solid black;
+}
+tr {
+  background-color: #fcbe11;
+}
+
+input[type="text"],
+input[type="number|email"] {
+  width: 25%;
+  padding: 5px 5px;
+  box-sizing: border-box;
+}
+
+input[type="text|number"]:focus {
+  border: 3px solid blue;
+}
+
+label {
+  padding: 12px 10px;
+}
+
+/* manejo de las características de las clases*/
+
+.colorceldsprintfa {
+  background: #9999ff;
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.miformulario {
+  width: 100%;
+}
+
+.errorlist li {
+  color: red;
+}
+
+/*Menu */
+/*
+ Tomado de http://codigoprogramacion.com/cursos/html/como-hacer-un-menu-horizontal-con-html5-y-css3.html
+ */
+.top_menu ul {
+  list-style: none;
+  float: left;
+  padding: 5px;
+  width: 100%;
+  background-color: #f3f3f3;
+}
+
+.top_menu ul li {
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.top_menu ul li a {
+  text-decoration: none;
+  font-size: 20px;
+}
+
+footer {
+  background: #5e5e5e;
+  color: #fff;
+}
+
+/*
+  agregar dos columnas
+  tomado de:
+  https://dev.to/drews256/ridiculously-easy-row-and-column-layouts-with-flexbox-1k01
+*/
+
+.wrapper-dos-columnas {
+  margin: 15px;
+  background-color: red;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+
+.izquierda-column {
+  background-color: #fff;
+  height: 200px;
+}
+
+.derecha-column {
+  background-color: #fff;
+  height: 200px;
+}
+
+.fieldWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.fieldWrapper input,
+select {
+  width: 400px;
+  height: 30px;
+}
+
+/* fin dos columnas*/
