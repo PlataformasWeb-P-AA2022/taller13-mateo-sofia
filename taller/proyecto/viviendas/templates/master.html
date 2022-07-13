@@ -31,8 +31,16 @@
       <h1>Aplicación Administración</h1>
       <nav class="top_menu">
         <ul>
+          {% if user.is_authenticated %}
+            <li><span class="nombre_usuario"> Bienvenido: {{user.username}}</span></li>
+          {% endif %}
           <li><a href="{% url 'index' %}">INICIO</a></li>
           <li><a href="{% url 'crear_edificio' %}">AGREGAR EDIFICIO</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'logout_view'}">Salir</a></li>
+          {% else %}
+            <li>[<a href="{% url 'login' %}">ingresar</a>]</li>
+          {% endif %}
           <li>
             <a href="{% url 'crear_departamento' %}">AGREGAR DEPARTAMENTOS</a>
           </li>
