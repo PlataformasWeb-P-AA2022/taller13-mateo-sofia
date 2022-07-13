@@ -13,7 +13,7 @@ def hello_world():
 def los_edificios():
     r = requests.get("http://127.0.0.1:8000/api/edificios/",
             auth=(user, password))        
-    edificios = json.loads(r.content)
+    edificios = json.loads(r.content)['results']
     numero_edificios = len(edificios)
     return render_template("losedificios.html", edificios=edificios,
     numero_edificios=numero_edificios)
@@ -25,7 +25,7 @@ def los_departamentos():
     """
     r = requests.get("http://127.0.0.1:8000/api/departamentos/",
             auth=(user, password))
-    datos = json.loads(r.content)
+    datos = json.loads(r.content)['results']
     numero = len(datos)
     return render_template("losdepartamentos.html", datos=datos,
     numero=numero)
@@ -37,7 +37,7 @@ def los_departamentos_dos():
     """
     r = requests.get("http://127.0.0.1:8000/api/departamentos/",
             auth=(user, password))
-    datos = json.loads(r.content)
+    datos = json.loads(r.content)['results']
     numero = len(datos)
     datos2 = []
     for d in datos:
