@@ -12,9 +12,9 @@ def hello_world():
 @app.route("/losedificios")
 def los_edificios():
     r = requests.get("http://127.0.0.1:8000/api/edificios/",
-            auth=(user, password))
-    edificios = json.loads(r.content)['results']
-    numero_edificios = json.loads(r.content)['count']
+            auth=(user, password))        
+    edificios = json.loads(r.content)
+    numero_edificios = len(edificios)
     return render_template("losedificios.html", edificios=edificios,
     numero_edificios=numero_edificios)
 
@@ -25,8 +25,8 @@ def los_departamentos():
     """
     r = requests.get("http://127.0.0.1:8000/api/departamentos/",
             auth=(user, password))
-    datos = json.loads(r.content)['results']
-    numero = json.loads(r.content)['count']
+    datos = json.loads(r.content)
+    numero = len(datos)
     return render_template("losdepartamentos.html", datos=datos,
     numero=numero)
 
@@ -37,11 +37,13 @@ def los_departamentos_dos():
     """
     r = requests.get("http://127.0.0.1:8000/api/departamentos/",
             auth=(user, password))
-    datos = json.loads(r.content)['results']
-    numero = json.loads(r.content)['count']
+    datos = json.loads(r.content)
+    numero = len(datos)
     datos2 = []
     for d in datos:
-        datos2.append({'nombrePropietario':d['nombrePropietario'], 'costoDepartamento':d['costoDepartamento'],
+        datos2.append({'nombre_propietario':d['nombre_propietario'],
+        'costo_departamento':d['costo_departamento'],
+        'num_cuartos':d['num_cuartos'],
         'edificio': obtener_edificio(d['edificio'])})
     return render_template("losdepartamentosdos.html", datos=datos2,
     numero=numero)
@@ -52,5 +54,5 @@ def obtener_edificio(url):
     """
     """
     r = requests.get(url, auth=(user, password))
-    nombre_edificio = json.loads(r.content)['nombreEdificio']
+    nombre_edificio = json.loads(r.content)['nombre']
     return nombre_edificio
