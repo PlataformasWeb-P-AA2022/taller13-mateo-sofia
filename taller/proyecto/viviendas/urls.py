@@ -1,6 +1,6 @@
 """
     Manejo de urls para la aplicación
-    administrativo
+    viviendas
 """
 from django.urls import path
 # se importa las vistas de la aplicación
